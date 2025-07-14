@@ -20,8 +20,10 @@ function f:PLAYER_LOGOUT()
 end
 
 function f:TIME_PLAYED_MSG(_, totalTimePlayed, timePlayedThisLevel)
-    local characterName = UnitName("player");
-    PlaytimePerCharacter[characterName] = math.floor(totalTimePlayed);
+    local characterName = UnitName("player")
+    local realmName = GetRealmName()
+    local parsedName = string.format("%s-%s", characterName, realmName)
+    PlaytimePerCharacter[parsedName] = math.floor(totalTimePlayed)
 end
 
 f:SetScript("OnEvent", f.OnEvent);
